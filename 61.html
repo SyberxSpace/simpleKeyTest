@@ -6,6 +6,9 @@
         <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/49/OOjs_UI_icon_keyboard-progressive.svg"/>
     </head>
     <body style="margin: 0; height: 100vh;">
+        <audio id="audioCube" src="audio_file.mp3">
+			Your LAME browser does not support HTML5 audio!
+		</audio>
         <svg viewBox="0 0 833.992 300.977" width="100%" height="100%" fill="lightgray">
             <rect id="Escape" x="12.77" y="18.93" width="51.004" height="50.994"/>
             <rect id="Digit1" x="66.748" y="18.93" width="51.005" height="50.994"/>
@@ -73,12 +76,13 @@
             const onkey = event => {
                 event.preventDefault();
                 const element = document.getElementById(event.code);
-                if (element) element.setAttribute('fill', event.type === 'keyup' ? 'lime' : 'red');
+                if (element){
+                    element.setAttribute('fill', event.type === 'keyup' ? 'lime' : 'red');
+                    if (element.id == "Escape") audioCube.play();
+                };
             };
             addEventListener('keydown', onkey);
             addEventListener('keyup', onkey);
-            var audio = new Audio('audio_file.mp3');
-            audio.play();
         </script>
     </body>
 </html>
